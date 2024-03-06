@@ -1,0 +1,4 @@
+deploy:
+  provider: pages:git
+  token: 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
+  edge: true # opt in to dpl v2
