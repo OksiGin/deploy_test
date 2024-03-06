@@ -1,29 +1,27 @@
 os: linux
-
 vm:
-  size: [large]
+  size:
+  - large
 language: java
 services:
-  - docker
+- docker
 cache: bundler
 dist: bionic
-
-
 install: skip
-
 jobs:
   include:
-    - name: failing
-      script: true
-
+  - name: failing
+    script: true
 after_success:
-  - echo done
-  - echo $TRAVIS_TEST_RESULT
+- echo done
+- echo $TRAVIS_TEST_RESULT
 after_failure:
-  - echo failed
-  - echo $TRAVIS_TEST_RESULT
-
+- echo failed
+- echo $TRAVIS_TEST_RESULT
 deploy:
   provider: pages:git
-  token: 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
-  edge: true # opt in to dpl v2
+  token: $KEY_PAIR
+  edge: true
+env:
+  global:
+    secure: nRqWsONXlOXpksqpbUlRs5R9BENUNcWE0yX86tC7VI/nVlJnjAYDSwAnDu8lt51RyVbDxANvgD6lvYbGePrZbq8/pjfjwneZ/3rCi6AMiPFLqFhp+ub6dqDLlpmh6/N2PT4/jcQZ6UmKHfHDMd9spmDHRSWIBOC6Yhh+knDT1Qmac7Nzl3rQismuu30GSbEVRY/i1EDkqdCzzmMF2nt0+ZfWbPPSon8U6NnU43o/V2LgvqBivrc8EXzD/3pG+GDpHIZ1fCo1nt99OV31GSD6unwDyARBhLrwM3rL9bTUwXR/jxLjxsgF/9gpjx1K4C6cppzclr4s1+SXyIINysPxuNR7WcszUkLfipQ1yAfRD/OMFC++k0/5vYnzpy8G5b+buAwqod4v6lWxndAAqMhe1+wRB63yZoww9rqScnC0CDL4ngBgYYce7eqfPNFO+fYoErV1wqxjvUeAoud5WDiNb0IzYU0BGcuFrgJWapwiKu8KWt5RTaCfKr/yqblMlJo8mf3ys3iDof4H3LzEYVJ+6QYv9KgqtqRv50b4k7FydI8zmFIPiZzK/Sgr4//OKmw8f7xagkJLeH/kzfiKcD7DuWT5N9GZn4/dFhXtZLHeQjD7WHIe9TrEPyG+cWALAortkfXUz7RoD78l81tpkEWEUByVh26j8v3CBhHUMxAqVlE=
