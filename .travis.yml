@@ -1,25 +1,30 @@
 os: linux
 vm:
   size:
-    - large
+  - large
 language: java
 services:
-  - docker
+- docker
 cache: bundler
 dist: bionic
 install: skip
 jobs:
   include:
-    - name: failing
-      script: true
+  - name: failing
+    script: true
 after_success:
-  - echo done
-  - echo $TRAVIS_TEST_RESULT
+- echo done
+- echo $TRAVIS_TEST_RESULT
 after_failure:
-  - echo failed
-  - echo $TRAVIS_TEST_RESULT
+- echo failed
+- echo $TRAVIS_TEST_RESULT
 deploy:
   provider: pages
   edge: true
   on:
     branch: main
+  token:
+    secure: hn1XVjFFbOp4v1CozycSochlSU7uthYl3l8ADOoyLq3/xLYWY9wQEcqoJ5L+oyQRWFLOraHtGl4oW34IM7pV2k0lQ8nWfT+Uq7BdZM88eywuPJrecdnTXU+JW2snqF9eF3P33BA+ZEqHfwdNoQilg4VKG3P7CHH9Ai6NnW8GrvLUt9As76lgrkeKYy7z6qyNeySX/fRkwH+SD4psNz2FxQ1j5JGMj8TgyjJnMC2v2lJvUCGTjYAJoziuwwr9wEisxs9VkuyLxvNCgt0dzwLc2zw7T0AAMMSLovkrXvhlXpcFiptGmMya2ec1WXTKHWGgDKuRxaWQ/9pXkvhwKiiPmN2i+nWkIDYjIVsOOcPwJJXQPSH3myrGtikduUJSlrbikd/5kNJ2yCsUouNO6bx3bS5VDBmSE5w6B0HtwvxUQ6tybHSnIc+CVc9EveJRTZLXC+MBuZ9NiYFYdu8oKA4+ynJZqOfb25FIVd/zMrhvh0jo8SOXZdp7cp+MBA2lHVUCAS7bu7qCk+PMrjFQ5MDPIcOlAcBjN+1LU3tat1Jcrqz08iBiYfByiecRGM864lJGYoTjUjq0B72NOXS8GS911s1TKaUSBcIXT8DIqgDcYpXvH+bLZCn/5hycZc0Bfh2QSF7ZGeHCnhH4/ON7nah1E/NHK2SjEDbIgc237gtXYXw=
+before_install:
+- openssl aes-256-cbc -K $encrypted_189e52c2c347_key -iv $encrypted_189e52c2c347_iv
+  -in deploy_key\=deploy_key -out deploy_key -d
